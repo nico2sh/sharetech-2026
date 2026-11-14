@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Customers Don’t Run Unit Tests</title>
+
+		<link rel="stylesheet" href="dist/reset.css" />
+		<link rel="stylesheet" href="dist/reveal.css" />
+		<link rel="stylesheet" href="dist/theme/black.css" />
+		<link rel="stylesheet" href="assets/sharetech.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- 1 + 2. Conference and talk title, merged -->
+				<section class="title-slide" data-transition="fade">
+					<p class="eyebrow">ShareTech 2026</p>
+					<h1>Customers Don’t<br />Run Unit Tests</h1>
+					<p class="byline">Nico Hormazábal<br /><span class="role">Senior Director of Engineering @ New Relic</span></p>
+				</section>
+
+				<!-- 3. Topics -->
+				<section>
+					<h2>Layout / Topics</h2>
+					<ul class="topics">
+						<li class="fragment">Personal intro
+							<ul><li>Company intro</li><li>Background</li><li>Customers?</li><li>Petabytes</li></ul>
+						</li>
+						<li class="fragment">What happened one day
+							<ul><li>An incident went undetected</li><li>Many pipelines, many products, only one product</li><li>How data works</li><li>How New Relic queries our data</li></ul>
+						</li>
+						<li class="fragment">The problem with metrics
+							<ul><li>Test coverage</li><li>Gaps from unit tests and integration tests. Testing the right thing?</li></ul>
+						</li>
+						<li class="fragment">Think like a customer: aim for determinism
+							<ul><li>Agent2Query, baking recipes</li><li>Feature coverage, not code coverage</li><li>Make PMs part of the testing strategy → priority from business impact</li><li>Testing plans: for understanding the services, for better planning, for identifying gaps</li><li>Baking recipes</li><li>Chaos tests and gamedays → based on incidents</li></ul>
+						</li>
+						<li class="fragment">You need metrics → DORA, % customers impacted</li>
+					</ul>
+				</section>
+
+				<!-- 4. What is New Relic: grandma version -->
+				<section data-transition="fade">
+					<h2>What is New Relic</h2>
+					<p class="sub">Observability explained to your Grandma</p>
+					<div class="three">
+						<div class="col fragment fade-up">
+							<h3>The Product</h3>
+							<img src="assets/image19.webp" alt="Cookies" />
+						</div>
+						<div class="col fragment fade-up">
+							<h3>The Services</h3>
+							<div class="row">
+								<img src="assets/image4.webp" alt="Oven" />
+								<img src="assets/image23.webp" alt="Pantry" />
+							</div>
+						</div>
+						<div class="col fragment fade-up">
+							<h3>The Telemetry</h3>
+							<div class="tele">
+								<div><span>Metrics</span><img src="assets/image1.webp" alt="Timer" /><img src="assets/image2.webp" alt="Thermometer" /><img src="assets/image6.webp" alt="Scale" /></div>
+								<div><span>Logs</span><img src="assets/image16.webp" alt="Recipe notebook" /></div>
+								<div><span>Traces</span><img src="assets/image7.webp" alt="Order rail" /></div>
+							</div>
+						</div>
+					</div>
+					<img class="grandma-final fragment fade-in" src="assets/image17.webp" alt="Grandma" />
+				</section>
+
+				<!-- 5 -->
+				<section>
+					<h2>What is New Relic</h2>
+					<p class="sub">Observability company</p>
+					<img class="wide" src="assets/image5.webp" alt="Data flow into New Relic" />
+				</section>
+
+				<!-- 6 -->
+				<section>
+					<h2>What is New Relic</h2>
+					<p class="sub">Observability company</p>
+					<div class="stats">
+						<div class="fragment"><b>1.279.278.800</b><span>timeslices per minute (over a billion)</span></div>
+						<div class="fragment"><b>1.706.283.108.000</b><span>logs per minute (over a trillion)</span></div>
+					</div>
+					<p class="fragment">Customers across all industries.</p>
+					<p class="fragment">You get the idea…</p>
+				</section>
+
+				<!-- 7. Reliability, with the GIF -->
+				<section data-transition="fade">
+					<h2>The importance of Reliability</h2>
+					<div class="cols">
+						<div>
+							<p>We are the customers’ eyes</p>
+							<p class="fragment">If we have latency, our customers will learn late</p>
+							<p class="fragment">If our data is not accurate, our customers will be misled</p>
+							<p class="fragment">If we lose data, our customers can’t debug</p>
+							<p class="fragment">If we go down, our customers go blind</p>
+						</div>
+						<figure>
+							<img src="assets/image13.gif" alt="Car driving without observability" />
+							<figcaption>Rare representation of a company running their business without observability</figcaption>
+						</figure>
+					</div>
+				</section>
+
+				<!-- 8 -->
+				<section>
+					<h2>The importance of Reliability</h2>
+					<p class="sub">We track what matters</p>
+					<ul class="defs">
+						<li class="fragment"><b>Time-to-detect (TTD):</b> how long from the moment something goes wrong to the moment we know about it.</li>
+						<li class="fragment"><b>Time-to-mitigate (TTM):</b> how long from detection to customer impact mitigation.</li>
+						<li class="fragment"><b>Percent of customers impacted:</b> the impact radius of any given incident. It tells us whether we are dealing with a widespread outage or an isolated failure.</li>
+						<li class="fragment"><b>Change failure rate:</b> how often changes to our systems result in an incident or customer impact.</li>
+					</ul>
+				</section>
+
+				<!-- 9. Pipelines -->
+				<section data-transition="fade">
+					<h2>A Learning Opportunity</h2>
+					<p class="sub">But first… how pipelines work</p>
+					<div class="flow">
+						<div class="node"><div class="box blue">Raw Telemetry</div><img src="assets/image3.webp" alt="" /></div>
+						<div class="arrow fragment"><span>Decoration</span></div>
+						<div class="node"><div class="box green">NR Enriched Telemetry</div><img src="assets/image8.webp" alt="" /></div>
+					</div>
+				</section>
+
+				<!-- 10 -->
+				<section>
+					<h2>A Learning Opportunity</h2>
+					<p class="sub">A customer couldn’t fetch their data</p>
+					<div class="queries">
+						<div class="q fragment">
+							<p>Querying their telemetry</p>
+							<small>(give me all infrastructure data)</small>
+							<em class="good">Good</em>
+						</div>
+						<div class="q fragment">
+							<p>Querying their telemetry with conditions</p>
+							<small>(give me infrastructure data where CPU is over 80%)</small>
+							<em class="bad">Nada</em>
+						</div>
+					</div>
+				</section>
+
+				<!-- 11 -->
+				<section>
+					<h2>A Learning Opportunity</h2>
+					<p class="sub">How?</p>
+					<ul>
+						<li class="fragment">Code coverage was above 80% in that team</li>
+						<li class="fragment">Integration tests were covering all contracts</li>
+						<li class="fragment">Runbooks, synthetic tests, bake times, canary deploys, all in place…</li>
+					</ul>
+					<p class="fragment highlight-green">We were missing the customer journey.</p>
+					<p class="fragment">Focus your reliability from the customer’s point of view.</p>
+				</section>
+
+				<!-- 12 -->
+				<section>
+					<h2>A Learning Opportunity</h2>
+					<p class="sub">The problem with reliability metrics</p>
+					<div class="cols">
+						<img src="assets/image14.webp" alt="Goodhart's law comic" />
+						<img src="assets/image10.webp" alt="Goodhart's law" />
+					</div>
+					<blockquote class="fragment">“When a measure becomes a target, it ceases to be a good measure”<cite>Charles Goodhart</cite></blockquote>
+				</section>
+
+				<!-- 13 -->
+				<section data-transition="fade">
+					<h2>What do we Measure</h2>
+					<p>Metrics should be a conversation starter, never the goal.</p>
+					<p>Measure from the customer’s perspective.</p>
+					<div class="flow">
+						<img class="meme" src="assets/image11.webp" alt="Code coverage vs feature coverage" />
+						<div class="arrow fragment"><span>PMs should be part of your testing strategy</span></div>
+						<div class="callout fragment"><b>SLAs:</b> measure what impacts our customers</div>
+					</div>
+				</section>
+
+				<!-- 14 -->
+				<section>
+					<h2>What do we Measure</h2>
+					<p class="sub">The importance of a Product Manager</p>
+					<div class="cols">
+						<div>
+							<p class="fragment">They define features and roadmaps.</p>
+							<p class="fragment">As an engineer you are accountable for things to be running reliably.</p>
+							<p class="fragment">The PM tells you what the customer cares about.</p>
+							<p class="fragment highlight-green">Service Level Agreements and Service Level Objectives</p>
+						</div>
+						<img src="assets/image9.webp" alt="Parachute management app" />
+					</div>
+				</section>
+
+				<!-- 15 -->
+				<section data-transition="fade">
+					<h2>Test like a Customer</h2>
+					<p class="sub">Agent2Query: reproducing the user’s data journey to New Relic</p>
+					<div class="chain">
+						<div class="box orange fragment" data-fragment-index="1">Generator</div>
+						<span class="link fragment" data-fragment-index="2">Traffic</span>
+						<div class="box orange fragment" data-fragment-index="2">Application</div>
+						<span class="link fragment" data-fragment-index="3">Telemetry</span>
+						<div class="box green fragment" data-fragment-index="3">NR</div>
+						<span class="link fragment" data-fragment-index="4">Queries</span>
+						<div class="box orange fragment" data-fragment-index="4">Validator</div>
+					</div>
+					<div class="marks">
+						<span class="fragment" data-fragment-index="5">↑ Here</span>
+						<span class="fragment" data-fragment-index="5">↑ And here</span>
+					</div>
+				</section>
+
+				<!-- 16 -->
+				<section>
+					<h2>Test like a Customer</h2>
+					<p class="sub">Why is that important? You care about the customer:</p>
+					<ul>
+						<li class="fragment">If they see the data</li>
+						<li class="fragment">When they see it</li>
+						<li class="fragment">How they see it</li>
+						<li class="fragment">What they miss</li>
+					</ul>
+					<p class="fragment">But from the very origin of the data, no synthetic.</p>
+					<p class="fragment">With Agent2Query we not only detected issues proactively, but also code correctness issues.</p>
+				</section>
+
+				<!-- 17 -->
+				<section data-transition="fade">
+					<h2>Involve your PM <small>(cont.)</small></h2>
+					<p class="sub">Develop a testing plan</p>
+					<ul>
+						<li class="fragment">Runbooks coverage</li>
+						<li class="fragment">Contracts upstream and downstream</li>
+						<li class="fragment">Feature coverage</li>
+						<li class="fragment">Risk matrix</li>
+					</ul>
+					<p class="fragment">Is this exercise for resiliency only?</p>
+				</section>
+
+				<!-- 18 + 19. Baking times: auto-animate swaps the pictures -->
+				<section data-auto-animate>
+					<h2>Baking Times</h2>
+					<p>You don’t bake a cookie the same way you bake a stew.</p>
+					<p>Using Stew baking times:</p>
+					<div class="pair">
+						<figure data-id="left"><img src="assets/image20.webp" alt="Stew" /><figcaption>Stew</figcaption></figure>
+						<figure data-id="right"><img src="assets/image21.webp" alt="Burnt cookies" /><figcaption>Cookies</figcaption></figure>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>Baking Times</h2>
+					<p>You don’t bake a cookie the same way you bake a stew.</p>
+					<p>Using Cookies baking times:</p>
+					<div class="pair">
+						<figure data-id="left"><img src="assets/image12.webp" alt="Cookies" /><figcaption>Cookies</figcaption></figure>
+						<figure data-id="right"><img src="assets/image22.webp" alt="Cow" /><figcaption>Stew</figcaption></figure>
+					</div>
+				</section>
+
+				<!-- 20 -->
+				<section>
+					<h2>The problem with Baking Times</h2>
+					<p>They are not deterministic.</p>
+					<p>You are playing with the odds that something may happen during the bake time.</p>
+					<p class="sub fragment">Baking recipes: define a list of ingredients (checks)</p>
+					<ul>
+						<li class="fragment">Wait for some specific traffic to happen (throughput, data topology, etc.)</li>
+						<li class="fragment">Force a dashboard validation</li>
+						<li class="fragment">Trigger downstream tests</li>
+						<li class="fragment">Force a set of validations</li>
+					</ul>
+				</section>
+
+				<!-- 21 -->
+				<section data-transition="fade">
+					<h2>Embrace the Chaos</h2>
+					<div class="cols">
+						<div>
+							<p class="sub">Chaos tests and gamedays</p>
+							<p>Make the gamedays a part of the development cycle.</p>
+							<p>Use your risk matrix, past incidents, and new development as drivers.</p>
+							<p class="sub">And inject chaos:</p>
+							<ul>
+								<li class="fragment">Force a high CPU</li>
+								<li class="fragment">Drop a pod</li>
+								<li class="fragment">Inject latency</li>
+								<li class="fragment">Send a swarm of requests</li>
+							</ul>
+						</div>
+						<img src="assets/image15.gif" alt="Chaos" />
+					</div>
+					<p class="fragment">It is not (only) about testing your systems’ resiliency. It is about you understanding your systems.</p>
+				</section>
+
+				<!-- 22 -->
+				<section>
+					<h2>Embrace the Chaos</h2>
+					<p class="big">Keep the humans in the loop.</p>
+					<p class="big fragment">Claude is not accountable to your customers, you are.</p>
+				</section>
+
+				<!-- 23 -->
+				<section data-transition="fade">
+					<h2>Closing Words</h2>
+					<p>New Relic has been applying most of these practices for years.</p>
+					<p>But from that incident we looked for some new ways to approach reliability.</p>
+					<p class="sub">This last year:</p>
+					<div class="stats">
+						<div class="fragment"><b>25%</b><span>fewer incidents</span></div>
+						<div class="fragment"><b>90%</b><span>less impact time</span></div>
+					</div>
+					<p class="fragment">We haven’t reduced the deploy cadence.</p>
+				</section>
+
+				<!-- 24. Last slide -->
+				<section class="title-slide" data-transition="zoom">
+					<h1>And…</h1>
+					<p class="byline">Be kind to each other.</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="dist/plugin/notes.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				width: 1280,
+				height: 720,
+				transition: 'slide',
+				transitionSpeed: 'default',
+				plugins: [RevealNotes],
+			});
+		</script>
+	</body>
+</html>
