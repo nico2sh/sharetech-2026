@@ -24,7 +24,7 @@
 				<!-- 4. What is New Relic: grandma version -->
 				<section data-transition="fade">
 					<h2>What is New Relic</h2>
-					<p class="sub">Observability explained to your Grandma</p>
+					<p class="sub">Observability explained to your grandma</p>
 					<div class="three">
 						<div class="col fragment fade-up">
 							<h3>The Product</h3>
@@ -61,11 +61,12 @@
 					<h2>What is New Relic</h2>
 					<p class="sub">Observability company</p>
 					<div class="stats">
-						<div class="fragment"><b>1.279.278.800</b><span>timeslices per minute (over a billion)</span></div>
-						<div class="fragment"><b>1.706.283.108.000</b><span>logs per minute (over a trillion)</span></div>
+						<div class="fragment" data-fragment-index="1"><b>Billions</b><span>of timeslices per minute</span></div>
+						<div class="fragment" data-fragment-index="2"><b>Trillions</b><span>of logs per minute</span></div>
+						<div class="fragment" data-fragment-index="3"><b>Petabytes</b><span>of data</span></div>
 					</div>
-					<p class="fragment">Customers across all industries.</p>
-					<p class="fragment">You get the idea…</p>
+					<p class="fragment" data-fragment-index="4">Customers across all industries.</p>
+					<p class="fragment" data-fragment-index="5">You get the idea…</p>
 				</section>
 
 				<!-- 7. Reliability, with the GIF -->
@@ -81,7 +82,7 @@
 						</div>
 						<figure class="fragment" data-fragment-index="4" id="gif-figure">
 							<img data-gif="assets/image13.gif" alt="Car driving without observability" />
-							<figcaption>Rare representation of a company running their business without observability</figcaption>
+							<figcaption>Rare representation of a company running its business without observability</figcaption>
 						</figure>
 					</div>
 				</section>
@@ -107,7 +108,7 @@
 					<p class="sub">We track what matters</p>
 					<ul class="defs">
 						<li class="fragment"><b>Time-to-detect (TTD):</b> how long from the moment something goes wrong to the moment we know about it.</li>
-						<li class="fragment"><b>Time-to-mitigate (TTM):</b> how long from detection to customer impact mitigation.</li>
+						<li class="fragment"><b>Time-to-mitigate (TTM):</b> how long from detection until customer impact stops.</li>
 						<li class="fragment"><b>Percent of customers impacted:</b> the impact radius of any given incident. It tells us whether we are dealing with a widespread outage or an isolated failure.</li>
 						<li class="fragment"><b>Change failure rate:</b> how often changes to our systems result in an incident or customer impact.</li>
 					</ul>
@@ -156,14 +157,14 @@
 				<!-- 11 -->
 				<section>
 					<h2>A Learning Opportunity</h2>
-					<p class="sub">How?</p>
+					<p class="sub">How did this happen?</p>
 					<ul>
 						<li class="fragment" data-fragment-index="1">Code coverage was above 80% in that team</li>
-						<li class="fragment" data-fragment-index="2">Integration tests were covering all contracts</li>
+						<li class="fragment" data-fragment-index="2">Integration tests covered all contracts</li>
 						<li class="fragment" data-fragment-index="3">Runbooks, synthetic tests, bake times, canary deploys, all in place…</li>
 					</ul>
-					<p class="fragment accent" data-fragment-index="5">We were missing the customer journey.</p>
-					<p class="fragment" data-fragment-index="5">Focus your reliability from the customer’s point of view.</p>
+					<p class="fragment accent" data-fragment-index="5">We were not testing the customer journey.</p>
+					<p class="fragment" data-fragment-index="5">Focus your reliability work on the customer’s point of view.</p>
 				</section>
 
 				<!-- 12 -->
@@ -189,7 +190,7 @@
 					<p class="fragment" data-fragment-index="3">Measure from the customer’s perspective.</p>
 					<div class="flow measure">
 						<img class="meme fragment" data-fragment-index="4" src="assets/image11.webp" alt="Code coverage vs feature coverage" />
-						<div class="arrow fragment" data-fragment-index="5"><span>PMs should be part of your testing strategy</span></div>
+						<div class="arrow fragment" data-fragment-index="5"><span>Product Managers (PMs) should be part of your testing strategy</span></div>
 						<div class="callout fragment" data-fragment-index="6"><b>SLIs:</b> measure what impacts our customers</div>
 					</div>
 				</section>
@@ -201,7 +202,7 @@
 					<div class="cols">
 						<div>
 							<p class="fragment" data-fragment-index="1">They define features and roadmaps.</p>
-							<p class="fragment" data-fragment-index="2">As an engineer you are accountable for things to be running reliably.</p>
+							<p class="fragment" data-fragment-index="2">As an engineer you are accountable for keeping things running reliably.</p>
 							<p class="fragment" data-fragment-index="3">The PM tells you what the customer cares about.</p>
 							<p class="fragment accent" data-fragment-index="4">Service Level Agreements and Service Level Objectives</p>
 						</div>
@@ -241,15 +242,15 @@
 						<li class="fragment">How they see it</li>
 						<li class="fragment">What they miss</li>
 					</ul>
-					<p class="fragment">But from the very origin of the data, no synthetic.</p>
-					<p class="fragment">With Agent2Query we not only detected issues proactively, but also code correctness issues.</p>
+					<p class="fragment">We test from the very origin of the data, with nothing synthetic.</p>
+					<p class="fragment">With Agent2Query we detected issues proactively, and we also found code correctness issues.</p>
 				</section>
 
 				<!-- 18 + 19. Baking times: auto-animate swaps the pictures -->
 				<section data-auto-animate>
 					<h2>Baking Times</h2>
 					<p class="fragment" data-fragment-index="1">You don’t bake a cookie the same way you bake a stew.</p>
-					<p class="fragment" data-fragment-index="2">Using Stew baking times:</p>
+					<p class="fragment" data-fragment-index="2">Using the stew’s baking time:</p>
 					<div class="pair">
 						<figure data-id="left"><img class="fragment" data-fragment-index="3" src="assets/image20.webp" alt="Stew" /><figcaption class="fragment" data-fragment-index="2">Stew</figcaption></figure>
 						<figure data-id="right"><img class="fragment" data-fragment-index="4" src="assets/image21.webp" alt="Burnt cookies" /><figcaption class="fragment" data-fragment-index="2">Cookies</figcaption></figure>
@@ -258,7 +259,7 @@
 				<section data-auto-animate>
 					<h2>Baking Times</h2>
 					<p>You don’t bake a cookie the same way you bake a stew.</p>
-					<p>Using Cookies baking times:</p>
+					<p>Using the cookies’ baking time:</p>
 					<div class="pair">
 						<figure data-id="left"><img class="fragment" data-fragment-index="1" src="assets/image12.webp" alt="Cookies" /><figcaption>Cookies</figcaption></figure>
 						<figure data-id="right"><img class="fragment" data-fragment-index="2" src="assets/image22.webp" alt="Cow" /><figcaption>Stew</figcaption></figure>
@@ -269,7 +270,7 @@
 				<section>
 					<h2>The problem with Baking Times</h2>
 					<p>They are not deterministic.</p>
-					<p>You are playing with the odds that something may happen during the bake time.</p>
+					<p>You are playing with the odds that a problem appears during the bake time.</p>
 					<p class="sub fragment" data-fragment-index="1">Baking recipes: define a list of ingredients (checks)</p>
 					<ul>
 						<li class="fragment" data-fragment-index="2">Wait for some specific traffic to happen (throughput, data topology, etc.)</li>
@@ -282,10 +283,10 @@
 
 				<!-- 17 -->
 				<section data-transition="fade">
-					<h2>Involve your PM <small>(cont.)</small></h2>
+					<h2>Involve your PM</h2>
 					<p class="sub">Develop a testing plan</p>
 					<ul>
-						<li class="fragment">Runbooks coverage</li>
+						<li class="fragment">Runbook coverage</li>
 						<li class="fragment">Contracts upstream and downstream</li>
 						<li class="fragment">Feature coverage</li>
 						<li class="fragment">Risk matrix</li>
@@ -299,7 +300,7 @@
 					<div class="cols">
 						<div>
 							<p class="sub">Chaos tests and gamedays</p>
-							<p>Make the gamedays a part of the development cycle.</p>
+							<p>Make gamedays part of the development cycle.</p>
 							<p>Use your risk matrix, past incidents, and new development as drivers.</p>
 							<p class="sub">And inject chaos:</p>
 							<ul>
@@ -311,7 +312,7 @@
 						</div>
 						<img src="assets/image15.gif" alt="Chaos" />
 					</div>
-					<p class="fragment">It is not (only) about testing your systems’ resiliency. It is about you understanding your systems.</p>
+					<p class="fragment">It is not only about testing the resiliency of your systems. It is about understanding them.</p>
 				</section>
 
 				<!-- 22 -->
@@ -325,13 +326,13 @@
 				<section data-transition="fade">
 					<h2>Closing Words</h2>
 					<p>New Relic has been applying most of these practices for years.</p>
-					<p>But from that incident we looked for some new ways to approach reliability.</p>
+					<p>But that incident made us look for new ways to approach reliability.</p>
 					<p class="sub">This last year:</p>
 					<div class="stats">
 						<div class="fragment"><b>25%</b><span>fewer incidents</span></div>
 						<div class="fragment"><b>90%</b><span>less impact time</span></div>
 					</div>
-					<p class="fragment">We haven’t reduced the deploy cadence.</p>
+					<p class="fragment">And we did not slow down our deploys.</p>
 				</section>
 
 				<!-- 24. Last slide -->
