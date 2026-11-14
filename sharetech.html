@@ -21,26 +21,6 @@
 					<p class="byline">Nico Hormazábal<br /><span class="role">Senior Director of Engineering @ New Relic</span></p>
 				</section>
 
-				<!-- 3. Topics -->
-				<section>
-					<h2>Layout / Topics</h2>
-					<ul class="topics">
-						<li class="fragment">Personal intro
-							<ul><li>Company intro</li><li>Background</li><li>Customers?</li><li>Petabytes</li></ul>
-						</li>
-						<li class="fragment">What happened one day
-							<ul><li>An incident went undetected</li><li>Many pipelines, many products, only one product</li><li>How data works</li><li>How New Relic queries our data</li></ul>
-						</li>
-						<li class="fragment">The problem with metrics
-							<ul><li>Test coverage</li><li>Gaps from unit tests and integration tests. Testing the right thing?</li></ul>
-						</li>
-						<li class="fragment">Think like a customer: aim for determinism
-							<ul><li>Agent2Query, baking recipes</li><li>Feature coverage, not code coverage</li><li>Make PMs part of the testing strategy → priority from business impact</li><li>Testing plans: for understanding the services, for better planning, for identifying gaps</li><li>Baking recipes</li><li>Chaos tests and gamedays → based on incidents</li></ul>
-						</li>
-						<li class="fragment">You need metrics → DORA, % customers impacted</li>
-					</ul>
-				</section>
-
 				<!-- 4. What is New Relic: grandma version -->
 				<section data-transition="fade">
 					<h2>What is New Relic</h2>
@@ -203,12 +183,14 @@
 				<!-- 13 -->
 				<section data-transition="fade">
 					<h2>What do we Measure</h2>
-					<p>Metrics should be a conversation starter, never the goal.</p>
-					<p>Measure from the customer’s perspective.</p>
+					<p class="fragment" data-fragment-index="1">So, we shouldn’t use metrics?</p>
+					<p class="fragment" data-fragment-index="2">Metrics should be a conversation starter, never the goal.</p>
+					<p class="fragment addendum" data-fragment-index="2"><em>Metrics without context are useless.</em></p>
+					<p class="fragment" data-fragment-index="3">Measure from the customer’s perspective.</p>
 					<div class="flow measure">
-						<img class="meme" src="assets/image11.webp" alt="Code coverage vs feature coverage" />
-						<div class="arrow fragment"><span>PMs should be part of your testing strategy</span></div>
-						<div class="callout fragment"><b>SLAs:</b> measure what impacts our customers</div>
+						<img class="meme fragment" data-fragment-index="4" src="assets/image11.webp" alt="Code coverage vs feature coverage" />
+						<div class="arrow fragment" data-fragment-index="5"><span>PMs should be part of your testing strategy</span></div>
+						<div class="callout fragment" data-fragment-index="6"><b>SLIs:</b> measure what impacts our customers</div>
 					</div>
 				</section>
 
@@ -263,27 +245,14 @@
 					<p class="fragment">With Agent2Query we not only detected issues proactively, but also code correctness issues.</p>
 				</section>
 
-				<!-- 17 -->
-				<section data-transition="fade">
-					<h2>Involve your PM <small>(cont.)</small></h2>
-					<p class="sub">Develop a testing plan</p>
-					<ul>
-						<li class="fragment">Runbooks coverage</li>
-						<li class="fragment">Contracts upstream and downstream</li>
-						<li class="fragment">Feature coverage</li>
-						<li class="fragment">Risk matrix</li>
-					</ul>
-					<p class="fragment">Is this exercise for resiliency only?</p>
-				</section>
-
 				<!-- 18 + 19. Baking times: auto-animate swaps the pictures -->
 				<section data-auto-animate>
 					<h2>Baking Times</h2>
-					<p>You don’t bake a cookie the same way you bake a stew.</p>
-					<p>Using Stew baking times:</p>
+					<p class="fragment" data-fragment-index="1">You don’t bake a cookie the same way you bake a stew.</p>
+					<p class="fragment" data-fragment-index="2">Using Stew baking times:</p>
 					<div class="pair">
-						<figure data-id="left"><img class="fragment" data-fragment-index="1" src="assets/image20.webp" alt="Stew" /><figcaption>Stew</figcaption></figure>
-						<figure data-id="right"><img class="fragment" data-fragment-index="2" src="assets/image21.webp" alt="Burnt cookies" /><figcaption>Cookies</figcaption></figure>
+						<figure data-id="left"><img class="fragment" data-fragment-index="3" src="assets/image20.webp" alt="Stew" /><figcaption class="fragment" data-fragment-index="2">Stew</figcaption></figure>
+						<figure data-id="right"><img class="fragment" data-fragment-index="4" src="assets/image21.webp" alt="Burnt cookies" /><figcaption class="fragment" data-fragment-index="2">Cookies</figcaption></figure>
 					</div>
 				</section>
 				<section data-auto-animate>
@@ -309,6 +278,19 @@
 						<li class="fragment" data-fragment-index="5">Force a set of validations</li>
 					</ul>
 					<p class="fragment accent" data-fragment-index="6">You define a different recipe for each service type. Not all services are built equal.</p>
+				</section>
+
+				<!-- 17 -->
+				<section data-transition="fade">
+					<h2>Involve your PM <small>(cont.)</small></h2>
+					<p class="sub">Develop a testing plan</p>
+					<ul>
+						<li class="fragment">Runbooks coverage</li>
+						<li class="fragment">Contracts upstream and downstream</li>
+						<li class="fragment">Feature coverage</li>
+						<li class="fragment">Risk matrix</li>
+					</ul>
+					<p class="fragment">Is this exercise for resiliency only?</p>
 				</section>
 
 				<!-- 21 -->

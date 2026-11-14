@@ -262,3 +262,5 @@
 .reveal .quote-text blockquote { width: 100%; font-size: 1.1em; }
 
 .reveal .photo-stack > div { position: absolute; inset: 0; }
+
+.reveal .addendum { margin-top: -0.4em; color: #9aa4b5; }
