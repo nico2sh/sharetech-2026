@@ -94,13 +94,13 @@
 					<div class="cols">
 						<div>
 							<p>We are the customers’ eyes</p>
-							<p class="fragment">If we have latency, our customers will learn late</p>
-							<p class="fragment">If our data is not accurate, our customers will be misled</p>
-							<p class="fragment">If we lose data, our customers can’t debug</p>
-							<p class="fragment">If we go down, our customers go blind</p>
+							<p class="fragment" data-fragment-index="1">If we have latency, our customers will learn late</p>
+							<p class="fragment" data-fragment-index="2">If our data is not accurate, our customers will be misled</p>
+							<p class="fragment" data-fragment-index="3">If we lose data, our customers can’t debug</p>
+							<p class="fragment" data-fragment-index="4">If we go down, our customers go blind</p>
 						</div>
-						<figure>
-							<img src="assets/image13.gif" alt="Car driving without observability" />
+						<figure class="fragment" data-fragment-index="4" id="gif-figure">
+							<img data-gif="assets/image13.gif" alt="Car driving without observability" />
 							<figcaption>Rare representation of a company running their business without observability</figcaption>
 						</figure>
 					</div>
@@ -122,10 +122,21 @@
 				<section data-transition="fade">
 					<h2>A Learning Opportunity</h2>
 					<p class="sub">But first… how pipelines work</p>
-					<div class="flow">
-						<div class="node"><div class="box blue">Raw Telemetry</div><img src="assets/image3.webp" alt="" /></div>
-						<div class="arrow fragment"><span>Decoration</span></div>
-						<div class="node"><div class="box green">NR Enriched Telemetry</div><img src="assets/image8.webp" alt="" /></div>
+					<div class="pipeline">
+						<div class="node">
+							<div class="box blue">Raw Telemetry</div>
+							<img class="fragment" data-fragment-index="2" src="assets/image3.webp" alt="Raw telemetry" />
+						</div>
+						<div class="arrow fragment" data-fragment-index="1"><span>Decoration</span></div>
+						<div class="node">
+							<svg class="db fragment" data-fragment-index="1" viewBox="0 0 240 190" role="img" aria-label="NR Enriched Telemetry database">
+								<path d="M10 34 V150 A110 32 0 0 0 230 150 V34" fill="#82c7a5" />
+								<ellipse cx="120" cy="34" rx="110" ry="32" fill="#a9dcc2" />
+								<text x="120" y="108" text-anchor="middle">NR Enriched</text>
+								<text x="120" y="138" text-anchor="middle">Telemetry</text>
+							</svg>
+							<img class="fragment" data-fragment-index="2" src="assets/image8.webp" alt="Enriched telemetry" />
+						</div>
 					</div>
 				</section>
 
@@ -331,6 +342,20 @@
 		<script src="dist/reveal.js"></script>
 		<script src="dist/plugin/notes.js"></script>
 		<script>
+			// Start the GIF from its first frame when its fragment becomes visible.
+			// Reveal.js adds the class "visible" to a fragment when it is shown.
+			(function () {
+				const figure = document.getElementById('gif-figure');
+				const img = figure.querySelector('img[data-gif]');
+				const sync = () => {
+					const shown = figure.classList.contains('visible');
+					if (shown && !img.getAttribute('src')) img.src = img.dataset.gif;
+					if (!shown && img.getAttribute('src')) img.removeAttribute('src');
+				};
+				new MutationObserver(sync).observe(figure, { attributes: true, attributeFilter: ['class'] });
+				sync();
+			})();
+
 			Reveal.initialize({
 				hash: true,
 				width: 1280,

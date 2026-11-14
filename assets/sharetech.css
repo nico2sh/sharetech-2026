@@ -152,3 +152,42 @@
 .reveal .byline .role { display: inline-block; margin-top: 0.3em; font-size: 0.85em; color: #9aa4b5; }
 
 .reveal .eyebrow { margin: 0 0 0.8em; font-size: 0.7em; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--st-green); }
+
+/* Pipeline diagram (slide 8) */
+.reveal .pipeline { display: grid; grid-template-columns: 1fr 1.1fr 1fr; align-items: start; gap: 20px; margin-top: 10px; }
+.reveal .pipeline .node { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.reveal .pipeline .node img { max-height: 230px; margin: 0; }
+.reveal .pipeline .box { margin-top: 38px; font-size: 0.8em; min-width: 240px; }
+.reveal .pipeline .arrow { margin-top: 28px; font-size: 0.8em; color: var(--st-green); }
+.reveal .pipeline .arrow span { display: block; font-weight: 700; }
+.reveal .pipeline .db { width: 270px; height: auto; }
+.reveal .pipeline .db text { font-family: inherit; font-size: 22px; font-weight: 700; fill: #0f131a; }
+
+/* Bigger pipeline arrow (slide 8): a thick block arrow with moving stripes */
+.reveal .pipeline { grid-template-columns: 1fr 1.7fr 1fr; }
+.reveal .pipeline .arrow { margin-top: 24px; font-size: 1em; }
+.reveal .pipeline .arrow span { font-size: 0.9em; margin-bottom: 10px; }
+.reveal .pipeline .arrow::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 130px;
+	font-size: 0;
+	clip-path: polygon(0 25%, 78% 25%, 78% 0, 100% 50%, 78% 100%, 78% 75%, 0 75%);
+	background: repeating-linear-gradient(115deg, #82c7a5 0 28px, #5fa886 28px 56px);
+	background-size: 112px 100%;
+	animation: pipeline-flow 1.2s linear infinite;
+}
+@keyframes pipeline-flow {
+	to { background-position: 112px 0; }
+}
+
+/* Center the Raw Telemetry box (and the database) on the arrow's shaft */
+.reveal .pipeline { grid-template-rows: auto auto; align-items: center; row-gap: 24px; }
+.reveal .pipeline .node { display: contents; }
+.reveal .pipeline .node:first-child > .box { grid-area: 1 / 1; margin: 0; justify-self: center; }
+.reveal .pipeline .node:first-child > img { grid-area: 2 / 1; justify-self: center; }
+.reveal .pipeline .arrow { grid-area: 1 / 2; position: relative; margin: 0; }
+.reveal .pipeline .arrow span { position: absolute; bottom: 100%; left: 0; right: 0; margin: 0 0 6px; }
+.reveal .pipeline .node:last-child > svg { grid-area: 1 / 3; justify-self: center; }
+.reveal .pipeline .node:last-child > img { grid-area: 2 / 3; justify-self: center; }
