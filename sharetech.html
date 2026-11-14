@@ -106,6 +106,21 @@
 					</div>
 				</section>
 
+				<!-- Quote: a famous Hungarian -->
+				<section data-transition="fade">
+					<h2>Quoting a famous Hungarian</h2>
+					<div class="quote-layout">
+						<div class="photo-stack">
+							<div class="fragment" data-fragment-index="1"><img class="fragment fade-out" data-fragment-index="2" src="assets/hide-the-pain-harold.webp" alt="Hide the Pain Harold" /></div>
+							<img class="fragment" data-fragment-index="2" src="assets/szent-gyorgyi.webp" alt="Albert Szent-Györgyi" />
+						</div>
+						<div class="quote-text">
+							<p class="who accent fragment" data-fragment-index="2">Albert Szent-Györgyi</p>
+							<blockquote class="fragment" data-fragment-index="3">“Discovery consists of seeing what everybody has seen and thinking what nobody has thought”</blockquote>
+						</div>
+					</div>
+				</section>
+
 				<!-- 8 -->
 				<section>
 					<h2>The importance of Reliability</h2>
@@ -163,12 +178,12 @@
 					<h2>A Learning Opportunity</h2>
 					<p class="sub">How?</p>
 					<ul>
-						<li class="fragment">Code coverage was above 80% in that team</li>
-						<li class="fragment">Integration tests were covering all contracts</li>
-						<li class="fragment">Runbooks, synthetic tests, bake times, canary deploys, all in place…</li>
+						<li class="fragment" data-fragment-index="1">Code coverage was above 80% in that team</li>
+						<li class="fragment" data-fragment-index="2">Integration tests were covering all contracts</li>
+						<li class="fragment" data-fragment-index="3">Runbooks, synthetic tests, bake times, canary deploys, all in place…</li>
 					</ul>
-					<p class="fragment highlight-green">We were missing the customer journey.</p>
-					<p class="fragment">Focus your reliability from the customer’s point of view.</p>
+					<p class="fragment accent" data-fragment-index="5">We were missing the customer journey.</p>
+					<p class="fragment" data-fragment-index="5">Focus your reliability from the customer’s point of view.</p>
 				</section>
 
 				<!-- 12 -->
@@ -176,10 +191,13 @@
 					<h2>A Learning Opportunity</h2>
 					<p class="sub">The problem with reliability metrics</p>
 					<div class="cols">
-						<img src="assets/image14.webp" alt="Goodhart's law comic" />
-						<img src="assets/image10.webp" alt="Goodhart's law" />
+						<figure>
+							<img src="assets/image14.webp" alt="Goodhart's law comic" />
+							<figcaption>Comic by xkcd.com</figcaption>
+						</figure>
+						<img class="fragment" data-fragment-index="1" src="assets/image10.webp" alt="Goodhart's law" />
 					</div>
-					<blockquote class="fragment">“When a measure becomes a target, it ceases to be a good measure”<cite>Charles Goodhart</cite></blockquote>
+					<blockquote>“When a measure becomes a target, it ceases to be a good measure”<cite>Charles Goodhart</cite></blockquote>
 				</section>
 
 				<!-- 13 -->
@@ -187,7 +205,7 @@
 					<h2>What do we Measure</h2>
 					<p>Metrics should be a conversation starter, never the goal.</p>
 					<p>Measure from the customer’s perspective.</p>
-					<div class="flow">
+					<div class="flow measure">
 						<img class="meme" src="assets/image11.webp" alt="Code coverage vs feature coverage" />
 						<div class="arrow fragment"><span>PMs should be part of your testing strategy</span></div>
 						<div class="callout fragment"><b>SLAs:</b> measure what impacts our customers</div>
@@ -200,10 +218,10 @@
 					<p class="sub">The importance of a Product Manager</p>
 					<div class="cols">
 						<div>
-							<p class="fragment">They define features and roadmaps.</p>
-							<p class="fragment">As an engineer you are accountable for things to be running reliably.</p>
-							<p class="fragment">The PM tells you what the customer cares about.</p>
-							<p class="fragment highlight-green">Service Level Agreements and Service Level Objectives</p>
+							<p class="fragment" data-fragment-index="1">They define features and roadmaps.</p>
+							<p class="fragment" data-fragment-index="2">As an engineer you are accountable for things to be running reliably.</p>
+							<p class="fragment" data-fragment-index="3">The PM tells you what the customer cares about.</p>
+							<p class="fragment accent" data-fragment-index="4">Service Level Agreements and Service Level Objectives</p>
 						</div>
 						<img src="assets/image9.webp" alt="Parachute management app" />
 					</div>
@@ -213,18 +231,21 @@
 				<section data-transition="fade">
 					<h2>Test like a Customer</h2>
 					<p class="sub">Agent2Query: reproducing the user’s data journey to New Relic</p>
-					<div class="chain">
-						<div class="box orange fragment" data-fragment-index="1">Generator</div>
-						<span class="link fragment" data-fragment-index="2">Traffic</span>
-						<div class="box orange fragment" data-fragment-index="2">Application</div>
-						<span class="link fragment" data-fragment-index="3">Telemetry</span>
-						<div class="box green fragment" data-fragment-index="3">NR</div>
-						<span class="link fragment" data-fragment-index="4">Queries</span>
-						<div class="box orange fragment" data-fragment-index="4">Validator</div>
-					</div>
-					<div class="marks">
-						<span class="fragment" data-fragment-index="5">↑ Here</span>
-						<span class="fragment" data-fragment-index="5">↑ And here</span>
+					<div class="dataflow">
+						<div class="box orange fragment" data-fragment-index="3">Generator<span class="mark fragment" data-fragment-index="6"><i></i>Here</span></div>
+						<div class="flow-arrow fragment" data-fragment-index="3"><span>Traffic</span></div>
+						<div class="box blue app fragment" data-fragment-index="1">
+							Application
+							<div class="agent fragment" data-fragment-index="2"><img src="assets/newrelic-logo.webp" alt="New Relic agent" /></div>
+						</div>
+						<div class="flow-arrow from-agent fragment" data-fragment-index="4"><span>Telemetry</span></div>
+						<svg class="db fragment" data-fragment-index="4" viewBox="0 0 160 170" role="img" aria-label="New Relic database">
+							<path d="M8 32 V132 A72 30 0 0 0 152 132 V32" fill="#82c7a5" />
+							<ellipse cx="80" cy="32" rx="72" ry="30" fill="#a9dcc2" />
+							<text x="80" y="100" text-anchor="middle">NR</text>
+						</svg>
+						<div class="flow-arrow back fragment" data-fragment-index="5"><span>Queries</span></div>
+						<div class="box orange fragment" data-fragment-index="5">Validator<span class="mark fragment" data-fragment-index="6"><i></i>And here</span></div>
 					</div>
 				</section>
 
@@ -261,8 +282,8 @@
 					<p>You don’t bake a cookie the same way you bake a stew.</p>
 					<p>Using Stew baking times:</p>
 					<div class="pair">
-						<figure data-id="left"><img src="assets/image20.webp" alt="Stew" /><figcaption>Stew</figcaption></figure>
-						<figure data-id="right"><img src="assets/image21.webp" alt="Burnt cookies" /><figcaption>Cookies</figcaption></figure>
+						<figure data-id="left"><img class="fragment" data-fragment-index="1" src="assets/image20.webp" alt="Stew" /><figcaption>Stew</figcaption></figure>
+						<figure data-id="right"><img class="fragment" data-fragment-index="2" src="assets/image21.webp" alt="Burnt cookies" /><figcaption>Cookies</figcaption></figure>
 					</div>
 				</section>
 				<section data-auto-animate>
@@ -270,8 +291,8 @@
 					<p>You don’t bake a cookie the same way you bake a stew.</p>
 					<p>Using Cookies baking times:</p>
 					<div class="pair">
-						<figure data-id="left"><img src="assets/image12.webp" alt="Cookies" /><figcaption>Cookies</figcaption></figure>
-						<figure data-id="right"><img src="assets/image22.webp" alt="Cow" /><figcaption>Stew</figcaption></figure>
+						<figure data-id="left"><img class="fragment" data-fragment-index="1" src="assets/image12.webp" alt="Cookies" /><figcaption>Cookies</figcaption></figure>
+						<figure data-id="right"><img class="fragment" data-fragment-index="2" src="assets/image22.webp" alt="Cow" /><figcaption>Stew</figcaption></figure>
 					</div>
 				</section>
 
@@ -280,13 +301,14 @@
 					<h2>The problem with Baking Times</h2>
 					<p>They are not deterministic.</p>
 					<p>You are playing with the odds that something may happen during the bake time.</p>
-					<p class="sub fragment">Baking recipes: define a list of ingredients (checks)</p>
+					<p class="sub fragment" data-fragment-index="1">Baking recipes: define a list of ingredients (checks)</p>
 					<ul>
-						<li class="fragment">Wait for some specific traffic to happen (throughput, data topology, etc.)</li>
-						<li class="fragment">Force a dashboard validation</li>
-						<li class="fragment">Trigger downstream tests</li>
-						<li class="fragment">Force a set of validations</li>
+						<li class="fragment" data-fragment-index="2">Wait for some specific traffic to happen (throughput, data topology, etc.)</li>
+						<li class="fragment" data-fragment-index="3">Force a dashboard validation</li>
+						<li class="fragment" data-fragment-index="4">Trigger downstream tests</li>
+						<li class="fragment" data-fragment-index="5">Force a set of validations</li>
 					</ul>
+					<p class="fragment accent" data-fragment-index="6">You define a different recipe for each service type. Not all services are built equal.</p>
 				</section>
 
 				<!-- 21 -->
@@ -314,7 +336,7 @@
 				<section>
 					<h2>Embrace the Chaos</h2>
 					<p class="big">Keep the humans in the loop.</p>
-					<p class="big fragment">Claude is not accountable to your customers, you are.</p>
+					<p class="big fragment">AI is not accountable to your customers. You are.</p>
 				</section>
 
 				<!-- 23 -->

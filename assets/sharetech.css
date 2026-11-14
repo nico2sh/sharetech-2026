@@ -191,3 +191,74 @@
 .reveal .pipeline .arrow span { position: absolute; bottom: 100%; left: 0; right: 0; margin: 0 0 6px; }
 .reveal .pipeline .node:last-child > svg { grid-area: 1 / 3; justify-self: center; }
 .reveal .pipeline .node:last-child > img { grid-area: 2 / 3; justify-self: center; }
+
+.reveal .accent { color: var(--st-green); font-weight: 700; }
+
+/* Bigger arrow (slide 12) */
+.reveal .flow.measure .arrow { flex: 1.6; font-size: 0.8em; color: #fff; }
+.reveal .flow.measure .arrow span { display: block; margin-bottom: 10px; font-weight: 700; }
+.reveal .flow.measure .arrow::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 150px;
+	font-size: 0;
+	background: var(--st-green);
+	clip-path: polygon(0 28%, 74% 28%, 74% 0, 100% 50%, 74% 100%, 74% 72%, 0 72%);
+}
+
+/* Agent2Query data flow (slide 14) */
+.reveal .dataflow { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 50px; }
+.reveal .dataflow .box { font-weight: 700; font-size: 0.7em; flex: none; }
+.reveal .dataflow .app { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 22px 18px; }
+.reveal .dataflow .agent { background: #fff; border-radius: 8px; padding: 6px 12px; }
+.reveal .dataflow .agent img { display: block; height: 46px; margin: 0; box-shadow: none; }
+.reveal .dataflow .db { flex: none; width: 150px; height: auto; }
+.reveal .dataflow .db text { font-family: inherit; font-size: 40px; font-weight: 700; fill: #0f131a; }
+.reveal .dataflow .flow-arrow { flex: 1; position: relative; height: 70px; min-width: 90px; }
+.reveal .dataflow .flow-arrow::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--st-green);
+	clip-path: polygon(0 30%, 70% 30%, 70% 0, 100% 50%, 70% 100%, 70% 70%, 0 70%);
+}
+.reveal .dataflow .flow-arrow.back::after { transform: scaleX(-1); }
+.reveal .dataflow .flow-arrow span { position: absolute; bottom: 100%; left: 0; right: 0; margin-bottom: 8px; text-align: center; font-size: 0.6em; font-weight: 700; color: #fff; }
+
+/* Telemetry arrow starts at the New Relic agent box, not at the Application box edge */
+.reveal .dataflow .flow-arrow.from-agent { transform: translateY(17px); margin-left: -22px; z-index: 2; }
+
+/* "Here" markers: an up arrow under the Generator and under the Validator */
+.reveal .dataflow .box { position: relative; }
+.reveal .dataflow .mark {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: 14px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	white-space: nowrap;
+	font-size: 0.85em;
+	font-weight: 700;
+	color: var(--st-green);
+}
+.reveal .dataflow .mark i {
+	display: block;
+	width: 56px;
+	height: 90px;
+	background: var(--st-green);
+	clip-path: polygon(50% 0, 100% 45%, 70% 45%, 70% 100%, 30% 100%, 30% 45%, 0 45%);
+}
+
+/* Quote slide: one picture replaces the other in the same spot */
+.reveal .quote-layout { display: grid; grid-template-columns: 480px 1fr; gap: 50px; align-items: center; margin-top: 10px; }
+.reveal .photo-stack { position: relative; width: 480px; height: 480px; }
+.reveal .photo-stack img { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; object-fit: contain; border-radius: 12px; }
+.reveal .quote-text .who { font-size: 1.1em; margin: 0 0 0.6em; }
+.reveal .quote-text blockquote { width: 100%; font-size: 1.1em; }
+
+.reveal .photo-stack > div { position: absolute; inset: 0; }
