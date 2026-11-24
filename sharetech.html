@@ -18,7 +18,7 @@
 				<section class="title-slide" data-transition="fade">
 					<p class="eyebrow">ShareTech 2026</p>
 					<h1>Customers Don’t<br />Run Unit Tests</h1>
-					<p class="byline">Nico Hormazábal<br /><span class="role">Senior Director of Engineering @ New Relic</span></p>
+					<p class="byline">Nico Hormazábal<br /><span class="role">Senior Director of Engineering @ New Relic</span><br /><a class="site" href="https://nico.red">nico.red</a><br /><a class="site" href="https://www.linkedin.com/in/nhormazabal/">linkedin.com/in/nhormazabal</a></p>
 				</section>
 
 				<!-- 4. What is New Relic: grandma version -->
@@ -344,10 +344,6 @@
 							<p class="fragment accent" data-fragment-index="3">Do not wait for the browning.</p>
 						</div>
 					</div>
-						<aside class="notes">
-							Link to baking recipes: a bake time waits for the browning to show up. A recipe does not wait. It forces the conditions and checks. The ingredients are the normal behavior: wait for specific traffic, validate the dashboards, trigger the downstream tests.
-							Link to gamedays: they go one step further and remove a buffer on purpose (drop a pod, force high CPU, inject latency) to see if the system burns. It is like taking away the vitamin C. Recipes check the normal path. Gamedays check the buffers.
-						</aside>
 				</section>
 				<section data-auto-animate>
 					<h2 data-id="szent-title">Back to Szent-Györgyi</h2>
@@ -359,10 +355,6 @@
 							<p class="fragment accent" data-fragment-index="2">Our chain is the customer journey. Observe it, and build your tests on what the customer cares about.</p>
 						</div>
 					</div>
-						<aside class="notes">
-							Link to Agent2Query: it follows the data through the whole chain. It starts at the generator, goes through the application with the agent, reaches New Relic, and ends with the queries that the customer runs. It tests the chain, not the parts.
-							This is where our incident happened. Unit tests and integration tests were fine, but nobody tested the customer journey. This is our chain of carriers.
-						</aside>
 				</section>
 
 				<!-- 23 -->
